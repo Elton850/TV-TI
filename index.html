@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Loop Power BI - Jeff (7 dashboards)</title>
+
+<style>
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+}
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: none;
+}
+iframe.active {
+    display: block;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container" id="container"></div>
+
+<script>
+let pages = [    
+  "https://app.powerbi.com/view?r=eyJrIjoiM2FiOGMwN2QtYTQyOC00MGQwLWE2NTItZmNhZjQzMDk2OGVhIiwidCI6IjNhMmVjOThiLTNiYzAtNGM4My1iNWUxLWY3YzQ2MTNjYzEyZCJ9",
+  "https://app.powerbi.com/view?r=eyJrIjoiMDU0Y2U0YjUtYjNjZC00MDNiLTk2MjAtZDA5YThiNTU5ODQ3IiwidCI6IjNhMmVjOThiLTNiYzAtNGM4My1iNWUxLWY3YzQ2MTNjYzEyZCJ9",
+  "https://app.powerbi.com/view?r=eyJrIjoiNzNjZjA5NzEtNTQ0My00NzI3LWI4NTEtOWI2MjUyNDQ2NTlhIiwidCI6IjNhMmVjOThiLTNiYzAtNGM4My1iNWUxLWY3YzQ2MTNjYzEyZCJ9",
+  "https://app.powerbi.com/view?r=eyJrIjoiNDJkMzhlMzItZDc4Ni00MWIxLWEzZGMtOTM5NDgxOTlmNmRkIiwidCI6IjNhMmVjOThiLTNiYzAtNGM4My1iNWUxLWY3YzQ2MTNjYzEyZCJ9",
+  "https://app.powerbi.com/view?r=eyJrIjoiNzVkYWVlMTktMmE4Yi00YjE4LTg5M2UtODNkNzIwZDFiNDFhIiwidCI6IjNhMmVjOThiLTNiYzAtNGM4My1iNWUxLWY3YzQ2MTNjYzEyZCJ9",
+  "https://app.powerbi.com/view?r=eyJrIjoiZDg2MmIxNWYtZWI1Yy00YjI5LTg2NmItNWEyYTUyMGIzM2M0IiwidCI6IjNhMmVjOThiLTNiYzAtNGM4My1iNWUxLWY3YzQ2MTNjYzEyZCJ9"
+];
+
+let container = document.getElementById("container");
+let iframes = [];
+let index = 0;
+
+pages.forEach(url => {
+    let frame = document.createElement("iframe");
+    frame.src = url;
+    frame.loading = "lazy";
+    frame.allowFullscreen = true;
+    frame.allow = "fullscreen";
+    container.appendChild(frame);
+    iframes.push(frame);
+});
+
+function rotate() {
+    iframes.forEach(f => f.classList.remove("active"));
+    iframes[index].classList.add("active");
+    index = (index + 1) % iframes.length;
+}
+
+rotate();
+setInterval(rotate, 25000);
+</script>
+
+</body>
+</html>
