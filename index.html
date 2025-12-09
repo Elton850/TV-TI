@@ -37,6 +37,9 @@ iframe.active {
 <div class="container" id="container"></div>
 
 <script>
+const ROTATE_INTERVAL = 35000;
+const PAGE_REFRESH = 70000;
+
 let pages = [    
   "https://app.powerbi.com/view?r=eyJrIjoiYjZlNGZjZDgtZTczNS00ZmVjLWJlYzItYzE4NTA3OWNlNmI2IiwidCI6IjNhMmVjOThiLTNiYzAtNGM4My1iNWUxLWY3YzQ2MTNjYzEyZCJ9",
   "https://app.powerbi.com/view?r=eyJrIjoiODgzYmQyYmUtZDc5Yi00MmVmLWE0NDQtMzczMTEzZGM2Mzg0IiwidCI6IjNhMmVjOThiLTNiYzAtNGM4My1iNWUxLWY3YzQ2MTNjYzEyZCJ9"
@@ -63,7 +66,11 @@ function rotate() {
 }
 
 rotate();
-setInterval(rotate, 35000);
+setInterval(rotate, ROTATE_INTERVAL);
+
+setTimeout(() => {
+    location.reload();
+}, PAGE_REFRESH);
 </script>
 
 </body>
